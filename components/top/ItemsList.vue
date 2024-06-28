@@ -37,8 +37,10 @@
                     {{ genre }}
                   </div>
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 text-green-400 hover:text-green-600">
+                  <NuxtLink :to="getDetailPageUrl(item.id)">
                     Go to detail
+                  </NuxtLink>
                 </td>
                 <td class="px-6 py-4">
                     <PencilSquareIcon class="size-6 text-orange-400" />
@@ -57,6 +59,10 @@
 <script lang="ts" setup>
 import type { Manga } from '~/types/manga'
 import { PencilSquareIcon, XCircleIcon } from '@heroicons/vue/24/solid'
+
+const getDetailPageUrl = (id: string) => {
+  return '/mangas/' + id
+}
 
 const file1 = new File(['content'], 'manga.zip', { type: 'application/zip' })
 const file2 = new File(['content'], 'manga.zip', { type: 'application/zip' })
