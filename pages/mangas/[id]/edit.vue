@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TopItemsList class="mt-20" />
+    edit
   </div>
 </template>
 

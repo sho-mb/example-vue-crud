@@ -1,8 +1,6 @@
 <template>
   <div class="flex justify-between">
-    <div class="text-3xl w-[40%]">
-      Free <strong>WEB</strong> Booker
-    </div>
+    <CommonLogoSection />
     <div class="w-[60%] flex gap-6">
       <CommonSearchBox />
       <CommonThemeSwitch />
