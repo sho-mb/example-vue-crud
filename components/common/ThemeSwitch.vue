@@ -1,9 +1,24 @@
 <template>
   <div class="flex gap-4">
-    <input id="dark" v-model="$colorMode.preference" type="radio" value="dark" class="hidden">
-    <label for="dark" aria-selected="true"><MoonIcon class="size-10" /></label>
+    <input
+      id="dark"
+      v-model="$colorMode.preference"
+      type="radio"
+      value="dark"
+      class="hidden"
+    >
+    <label
+      for="dark"
+      aria-selected="true"
+    ><MoonIcon class="size-10" /></label>
 
-    <input id="sepia" v-model="$colorMode.preference" type="radio" value="sepia" class="hidden">
+    <input
+      id="sepia"
+      v-model="$colorMode.preference"
+      type="radio"
+      value="sepia"
+      class="hidden"
+    >
     <label for="sepia"><SunIcon class="size-10" /></label>
   </div>
 </template>

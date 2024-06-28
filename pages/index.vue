@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>dick</div>
+    <TopItemsList  class="mt-20"/>
   </div>
 </template>
 
