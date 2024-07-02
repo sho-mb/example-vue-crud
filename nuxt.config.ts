@@ -7,4 +7,10 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
+  runtimeConfig: {
+    public: {
+      API_URI: process.env.API_URI,
+      API_PORT: process.env.API_PORT,
+    },
+  },
 })
