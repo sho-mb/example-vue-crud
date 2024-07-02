@@ -1,6 +1,9 @@
 <template>
   <div>
-    <TopItemsList class="mt-20" />
+    <section class="mt-10">
+      <TopCreateMangaBtn class="text-right p-4" />
+      <TopItemsList class="" />
+    </section>
   </div>
 </template>
 
