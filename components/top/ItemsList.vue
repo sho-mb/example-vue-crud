@@ -1,11 +1,11 @@
 <template>
   <div>
-    <p v-if="error">
+    <!-- <p v-if="error">
       {{ `error status: ${error.status}, messsage: ${error.message}` }}
-    </p>
+    </p> -->
     <div class="relative overflow-x-auto">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th
               scope="col"
@@ -17,7 +17,7 @@
               scope="col"
               class="px-6 py-3"
             >
-              Auther
+              Author
             </th>
             <th
               scope="col"
@@ -99,11 +99,15 @@ import { PencilSquareIcon, XCircleIcon } from '@heroicons/vue/24/solid'
 import type { Manga } from '~/types/manga'
 
 const mangas = ref<Manga[]>([])
-const { data, error } = await useFetch<Manga[]>('/api/manga')
-if (data.value) {
-  mangas.value = data.value
+try {
+  const { data } = await useFetch<Manga[]>('/api/manga')
+  if (data.value) {
+    mangas.value = data.value
+  }
 }
-console.log(mangas.value[0].author)
+catch (error) {
+  console.error('Error fetching data:', error)
+}
 </script>
 
 <style>

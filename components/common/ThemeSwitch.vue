@@ -13,13 +13,13 @@
     ><MoonIcon class="size-10" /></label>
 
     <input
-      id="sepia"
+      id="light"
       v-model="$colorMode.preference"
       type="radio"
-      value="sepia"
+      value="light"
       class="hidden"
     >
-    <label for="sepia"><SunIcon class="size-10" /></label>
+    <label for="light"><SunIcon class="size-10" /></label>
   </div>
 </template>
 
@@ -28,6 +28,10 @@ import { MoonIcon, SunIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <style>
+.body {
+  background-color: #fff;
+  color: rgba(0,0,0,0.8);
+}
 .dark-mode body {
   background-color: #091a28;
   color: #ebf4f1;
