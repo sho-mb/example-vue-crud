@@ -146,12 +146,12 @@
       <div class="mb-8">
         <div>
           <label
-            for="genre"
+            for="cover"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >Add Cover</label>
           <div class="flex gap-4">
             <input
-              id="genre"
+              id="cover"
               v-model="coverUrl"
               type="url"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -244,8 +244,8 @@ const submitForm = async () => {
   }
 }
 
-const remove = (index: string) => {
-  selected.value.splice(parseInt(index) - 1, 1)
+const remove = (id: string) => {
+  selected.value = selected.value.filter(i => i.id !== id)
 }
 
 const removeMessage = (index?: number) => {
