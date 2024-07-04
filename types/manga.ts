@@ -1,8 +1,4 @@
-interface Genre {
-  id: string
-  mangaId: string
-  genre: string
-}
+import type { Genre } from './genre'
 
 export interface Manga {
   id: string
@@ -11,6 +7,6 @@ export interface Manga {
   topViewUrl: string
   content: string
   genres: Genre[]
-  urlForFreeWebsite: string
+  urlOfWeb: string
   // mangaZip: File[]
 }

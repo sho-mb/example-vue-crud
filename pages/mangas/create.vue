@@ -1,6 +1,8 @@
 <template>
   <div>
-    <MangasCreateNewMangaForm />
+    <div class="mt-20">
+      <MangasCreateNewMangaForm />
+    </div>
   </div>
 </template>
 

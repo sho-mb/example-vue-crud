@@ -1,14 +1,13 @@
 import { API_BASE_URL } from '~/server/config/api'
-import type { Genre } from '~/types/genre'
+import type { Manga } from '~/types/manga'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   try {
-    const data = await $fetch<Genre>(`${API_BASE_URL}/genres`, {
+    await $fetch<Manga>(`${API_BASE_URL}/manga`, {
       method: 'post',
       body: body,
     })
-    return JSON.stringify(data.genre)
   }
   catch (e) {
     return e
