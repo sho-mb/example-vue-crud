@@ -80,11 +80,43 @@
               data-modal-target="default-modal"
               data-modal-toggle="default-modal"
             >
-              <XCircleIcon
+              <!-- <XCircleIcon
                 class="size-6 text-red-400"
                 @click="deleteItem(item.id)"
+              /> -->
+              <XCircleIcon
+                class="size-6 text-red-400"
+                @click="isOpen = true"
               />
             </button>
+            <UModal v-model="isOpen">
+              <div class="p-4">
+                <Placeholder class="h-48 text-center">
+                  <div>Are you sure you want to delete?</div>
+                  <div class="flex justify-between pt-10">
+                    <div class="w-[40%]">
+                      <UButton
+                        color="white"
+                        variant="solid"
+                        block
+                      >
+                        No
+                      </UButton>
+                    </div>
+                    <div class="w-[40%]">
+                      <UButton
+                        color="red"
+                        variant="solid"
+                        block
+                        @click="deleteItem(item.id)"
+                      >
+                        Yes
+                      </UButton>
+                    </div>
+                  </div>
+                </Placeholder>
+              </div>
+            </UModal>
           </td>
         </tr>
       </tbody>
@@ -99,6 +131,8 @@ import type { Manga } from '~/types/manga'
 
 const mangas = ref<Manga[]>([])
 const errorStore = useMyErrorStore()
+
+const isOpen = ref(false)
 
 const fetchData = async () => {
   try {
@@ -124,7 +158,6 @@ const deleteItem = async (id: string) => {
     errorStore.setError(messages, statusCode)
   }
   else {
-    // 削除成功後にデータを再フェッチ
     fetchData()
   }
 }
