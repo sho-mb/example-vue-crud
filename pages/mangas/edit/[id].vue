@@ -1,6 +1,9 @@
 <template>
   <div>
-    <MangasEditUpdateForm v-bind="manga" class="mt-10" />
+    <MangasEditUpdateForm
+      v-bind="manga"
+      class="mt-10"
+    />
   </div>
 </template>
 
