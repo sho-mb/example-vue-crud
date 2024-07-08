@@ -1,31 +1,5 @@
 <template>
   <form class="relative flex justify-between">
-    <UAlert
-      v-if="successMessage"
-      icon="i-heroicons-check-circle-20-solid"
-      :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'white', variant: 'link', padded: false }"
-      color="primary"
-      variant="solid"
-      :title="successMessage"
-      class="w-72 absolute -top-12 right-3"
-      @close="removeMessage()"
-    />
-    <div
-      v-else-if="errorMessages"
-      class="w-fit absolute -top-12 right-3"
-    >
-      <UAlert
-        v-for="(error, index) in errorMessages"
-        :key="index"
-        :close-button="{ icon: 'i-heroicons-x-mark-20-solid', color: 'white', variant: 'link', padded: false }"
-        icon="i-heroicons-bell-alert"
-        class="w-72 mb-4 animate-bounce"
-        :title="error"
-        variant="solid"
-        color="red"
-        @close="removeMessage(index)"
-      />
-    </div>
     <div class="w-[45%]">
       <div class="mb-5">
         <label
@@ -205,12 +179,10 @@
 import type { Genre } from '~/types/genre'
 import type { Manga } from '~/types/manga'
 
+const errorStore = useMyErrorStore()
 const genres = ref<Genre[]>([])
 const selected = ref<Genre[]>([])
 const genre = ref<''>()
-const successMessage = ref<string>('')
-const errorMessage = ref<string>('')
-const errorMessages = ref<string[]>([])
 const coverUrl = ref<string>('')
 const imageUrl = ref<string>('/image/default.jpg')
 const mangaForm = ref<Omit<Manga, 'id'>>({
@@ -223,6 +195,7 @@ const mangaForm = ref<Omit<Manga, 'id'>>({
 })
 
 const submitForm = async () => {
+  errorStore.clearError()
   mangaForm.value.topViewUrl = coverUrl.value
   mangaForm.value.genres = selected.value
   const { error } = await useFetch<string>('/api/manga', {
@@ -230,14 +203,9 @@ const submitForm = async () => {
     body: mangaForm.value,
   })
   if (error.value) {
-    errorMessages.value = []
-    errorMessage.value = `Error status: ${error.value.statusCode}`
-    errorMessages.value.push(errorMessage.value)
-    console.log(error.value.data?.data?.message)
-    error.value.data?.data?.message.forEach((message: string) => {
-      errorMessage.value = `Message: ${message}`
-      errorMessages.value.push(errorMessage.value)
-    })
+    const statusCode = error.value.statusCode
+    const messages = error.value.data?.data?.message
+    errorStore.setError(messages, statusCode)
   }
   else {
     return navigateTo('/')
@@ -248,31 +216,26 @@ const remove = (id: string) => {
   selected.value = selected.value.filter(i => i.id !== id)
 }
 
-const removeMessage = (index?: number) => {
-  if (index !== undefined) {
-    errorMessages.value.splice(index, 1)
-  }
-  successMessage.value = ''
-}
-
 const previewCover = () => {
   imageUrl.value = coverUrl.value
 }
 
 const addGenre = async () => {
+  errorStore.clearError()
   const { data, error } = await useFetch<string>('/api/genre', {
     method: 'post',
     body: { genre: genre.value },
   })
   if (data.value) {
-    successMessage.value = `Adding ${data.value} to genres successfuly`
+    const messages = `Adding ${data.value} to genres successfuly`
+    errorStore.setError(messages, 200)
     getGenres()
     genre.value = ''
   }
   else {
-    errorMessages.value = []
-    errorMessage.value = `Error status: ${error.value?.statusCode},  Message: ${error.value?.data?.data?.message}`
-    errorMessages.value.push(errorMessage.value)
+    const messages = error.value?.data?.data?.message
+    const statusCode = error.value?.statusCode
+    errorStore.setError(messages, statusCode)
   }
 }
 
