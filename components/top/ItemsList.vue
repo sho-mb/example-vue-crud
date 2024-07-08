@@ -70,7 +70,7 @@
             </NuxtLink>
           </td>
           <td class="px-6 py-4 text-orange-400 hover:text-orange-600">
-            <NuxtLink :to="{ name: 'mangas-id-edit', params: { id: item.id } }">
+            <NuxtLink :to="{ name: 'mangas-edit-id', params: { id: item.id } }">
               <PencilSquareIcon class="size-6 " />
             </NuxtLink>
           </td>
@@ -80,10 +80,6 @@
               data-modal-target="default-modal"
               data-modal-toggle="default-modal"
             >
-              <!-- <XCircleIcon
-                class="size-6 text-red-400"
-                @click="deleteItem(item.id)"
-              /> -->
               <XCircleIcon
                 class="size-6 text-red-400"
                 @click="isOpen = true"
