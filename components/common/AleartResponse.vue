@@ -7,7 +7,7 @@
       color="primary"
       variant="solid"
       :title="successMessage"
-      class="w-72 absolute -top-12 right-3"
+      class="w-72 mb-4 animate-bounce absolute top-12 right-3"
       @close="removeMessage()"
     />
     <div
@@ -56,7 +56,6 @@ watch(() => props.messageOrMessages, (targetVal) => {
     })
   }
   else if (typeof targetVal === 'string' && props.statusCode) {
-    console.log('pass2')
     const errorMessage = `Error status: ${props.statusCode},  Message: ${targetVal}`
     errorMessages.value.push(errorMessage)
   }

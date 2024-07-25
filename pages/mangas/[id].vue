@@ -4,9 +4,17 @@
       v-bind="manga"
       class="mt-10"
     />
-    <div class="text-right">
+    <div class="flex justify-end">
+      <MangasDetailAddZipBtn @add-zip="openUploadModal" />
       <CommonReturnButton @return-page="clicked" />
     </div>
+    <UModal v-model="isOpen">
+      <div class="p-4">
+        <Placeholder class="h-48">
+          <CommonUploadZip />
+        </Placeholder>
+      </div>
+    </UModal>
   </div>
 </template>
 
@@ -15,6 +23,7 @@ import type { Manga } from '~/types/manga'
 
 const route = useRoute()
 const router = useRouter()
+const isOpen = ref(false)
 const manga = ref<Manga>({
   id: '',
   mangaName: '',
@@ -40,6 +49,10 @@ if (data.value) {
 
 const clicked = () => {
   router.back()
+}
+
+const openUploadModal = () => {
+  isOpen.value = true
 }
 </script>
 
