@@ -55,7 +55,7 @@
         <div class="text-xl">
           Comics
         </div>
-        <!-- todo list -->
+        <MangasDetailComicsList :manga-id="id" />
       </div>
     </div>
   </div>

@@ -103,6 +103,8 @@ const uploadToServer = async () => {
       body: formData,
     })
 
+    console.log(data)
+
     if (data) {
       const messages = 'Adding storage successfuly'
       errorStore.setError(messages)
