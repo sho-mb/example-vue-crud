@@ -1,21 +1,23 @@
 <template>
   <div>
-    <p>{{ props.comicId }}</p>
+    <p>{{ props.comic.vol }}</p>
   </div>
 </template>
 
 <script lang="ts" setup>
+import type { Comic } from '~/types/comic'
+
 const tokenStore = useMyTokenStore()
 const props = defineProps<{
-  comicId: string
+  comic: Comic
 }>()
 
 const token = tokenStore.dbxRefreshToken
-const comic = await $fetch(`/api/cloud/${props.comicId}`, {
-  method: 'POST',
-  body: { token: token },
-})
-console.log(comic)
+// const comic = await $fetch(`/api/cloud/${props.comicVol}`, {
+//   method: 'POST',
+//   body: { token: token },
+// })
+// console.log(comic)
 </script>
 
 <style>

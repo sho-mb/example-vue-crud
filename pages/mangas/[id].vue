@@ -32,6 +32,7 @@ const manga = ref<Manga>({
   content: '',
   genres: [],
   urlOfWeb: '',
+  comics: [],
 })
 
 const { data } = await useFetch<Manga>(`/api/manga/${route.params.id}`)
@@ -44,6 +45,7 @@ if (data.value) {
     content: data.value.content,
     genres: data.value.genres,
     urlOfWeb: data.value.urlOfWeb,
+    comics: data.value.comics,
   }
 }
 

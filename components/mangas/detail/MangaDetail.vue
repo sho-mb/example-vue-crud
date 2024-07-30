@@ -55,7 +55,10 @@
         <div class="text-xl">
           Comics
         </div>
-        <MangasDetailComicsList :manga-id="id" />
+        <MangasDetailComicsList
+          :manga-id="id"
+          :manga-comics="props.comics"
+        />
       </div>
     </div>
   </div>
@@ -70,6 +73,7 @@ const props = defineProps<{
   content: string
   genres: { id: string, genre: string }[]
   urlOfWeb: string
+  comics: { id: string, comicUrl: string, vol: number }[]
 }>()
 </script>
 

@@ -1,3 +1,4 @@
+import type { Comic } from './comic'
 import type { Genre } from './genre'
 
 export interface Manga {
@@ -8,5 +9,5 @@ export interface Manga {
   content: string
   genres: Genre[]
   urlOfWeb: string
-  // mangaZip: File[]
+  comics: Comic[]
 }

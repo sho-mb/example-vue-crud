@@ -1,11 +1,10 @@
 import { API_BASE_URL } from '~/server/config/api'
 
 export default defineEventHandler(async (event) => {
-  const id = getRouterParam(event, 'id')
-
+  const vol = getRouterParam(event, 'id')
   try {
-    const comics = await $fetch(`${API_BASE_URL}/comics/${id}`)
-    return comics
+    const comic = await $fetch(`${API_BASE_URL}/comics/${vol}`)
+    return comic
   }
   catch (e) {
     console.log(e)

@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const util = new dropboxUtil()
   try {
-    util.findUploadFile(id!, body)
+    util.findUploadFile(id!, body.token)
   }
   catch (e) {
     console.log(e)

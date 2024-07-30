@@ -69,7 +69,7 @@ const route = useRoute()
 const router = useRouter()
 const file = ref<File | null>(null)
 const comicForm = ref<Omit<Comic, 'id'>>({
-  comicId: '',
+  comicUrl: '',
   vol: 0,
 })
 
@@ -103,18 +103,18 @@ const uploadToServer = async () => {
       body: formData,
     })
 
-    console.log(data)
-
     if (data) {
       const messages = 'Adding storage successfuly'
       errorStore.setError(messages)
-      comicForm.value.comicId = data
+      comicForm.value.comicUrl = data
     }
 
     await $fetch(`/api/comics/${route.params.id}`, {
       method: 'POST',
       body: comicForm.value,
     })
+
+    await refreshNuxtData()
   }
   catch (error) {
     const message = `Error uploading file: ${error}`

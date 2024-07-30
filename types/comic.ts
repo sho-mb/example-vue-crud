@@ -1,5 +1,5 @@
 export interface Comic {
   id: string
-  comicId: string
+  comicUrl: string
   vol: number
 }

@@ -13,8 +13,9 @@ export default defineEventHandler(async (event) => {
     }
 
     try {
-      const id = await util.uploadFileAndGetId(file, token)
-      return id
+      const url = await util.uploadFileAndGetUrl(file, token)
+      console.log(url)
+      return url
     }
     catch (e) {
       return e
